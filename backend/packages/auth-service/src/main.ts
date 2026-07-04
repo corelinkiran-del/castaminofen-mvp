@@ -88,34 +88,22 @@ app.post('/api/auth/register', async (req: Request, res: Response) => {
       });
     }
 
-    // TODO: Check if email/username already exists in database
-    // TODO: Create user in database
-    // TODO: Send verification email
-
+    // Check if email already exists
     logger.info('User registration started', { email, username });
+    const existing = await authService.findUserByEmail(email);
+    if (existing) {
+      return res.status(409).json({
+        success: false,
+        error: { code: 'CONFLICT', message: 'Email already registered' },
+      });
+    }
 
-    // Mock response for MVP
-    const mockUser = {
-      id: 'user-' + Math.random().toString(36).substr(2, 9),
-      email,
-      username,
-      firstName,
-      lastName,
-      subscriptionStatus: 'free' as const,
-      isCreator: false,
-      darkMode: true,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    };
+    const passwordHash = await authService.hashPassword(password);
+    const user = await authService.createUser({ email, username, passwordHash, firstName, lastName });
 
-    const authResponse = authService.createAuthResponse(mockUser);
+    const authResponse = authService.createAuthResponse(user as any);
 
-    res.status(201).json({
-      success: true,
-      data: authResponse,
-      timestamp: new Date(),
-      requestId: req.id || 'unknown',
-    });
+    res.status(201).json({ success: true, data: authResponse, timestamp: new Date(), requestId: (req as any).id || 'unknown' });
   } catch (error) {
     logger.error('Registration failed', error as Error);
     res.status(500).json({
@@ -145,34 +133,34 @@ app.post('/api/auth/login', async (req: Request, res: Response) => {
       });
     }
 
-    // TODO: Find user by email in database
-    // TODO: Verify password hash
-    // TODO: Update last login timestamp
-
     logger.info('Login attempt', { email, deviceId });
+    const userRow = await authService.findUserByEmail(email);
+    if (!userRow) {
+      return res.status(401).json({ success: false, error: { code: 'UNAUTHORIZED', message: 'Invalid credentials' } });
+    }
 
-    // Mock response for MVP
-    const mockUser = {
-      id: 'user-' + Math.random().toString(36).substr(2, 9),
-      email,
-      username: email.split('@')[0],
-      firstName: 'علی',
-      lastName: 'احمدی',
-      subscriptionStatus: 'premium' as const,
+    const valid = await authService.verifyPassword(password, userRow.password_hash || '');
+    if (!valid) {
+      return res.status(401).json({ success: false, error: { code: 'UNAUTHORIZED', message: 'Invalid credentials' } });
+    }
+
+    // Load minimal user object
+    const user = {
+      id: String(userRow.id),
+      email: userRow.email,
+      username: userRow.username,
+      firstName: '',
+      lastName: '',
+      subscriptionStatus: 'free' as const,
       isCreator: false,
       darkMode: true,
       createdAt: new Date(),
       updatedAt: new Date(),
     };
 
-    const authResponse = authService.createAuthResponse(mockUser);
+    const authResponse = authService.createAuthResponse(user as any);
 
-    res.json({
-      success: true,
-      data: authResponse,
-      timestamp: new Date(),
-      requestId: req.id || 'unknown',
-    });
+    res.json({ success: true, data: authResponse, timestamp: new Date(), requestId: (req as any).id || 'unknown' });
   } catch (error) {
     logger.error('Login failed', error as Error);
     res.status(500).json({
@@ -232,7 +220,7 @@ app.post('/api/auth/refresh-token', async (req: Request, res: Response) => {
         expiresIn: authResponse.expiresIn,
       },
       timestamp: new Date(),
-      requestId: req.id || 'unknown',
+      requestId: (req as any).id || 'unknown',
     });
   } catch (error) {
     logger.error('Token refresh failed', error as Error);

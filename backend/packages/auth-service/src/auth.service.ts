@@ -1,7 +1,7 @@
 // Auth Service - Main service logic for authentication
 
 import * as crypto from 'crypto';
-import { createLogger, IJwtPayload, IUser, ApiException, ERROR_CODES } from '@media-platform/shared';
+import { createLogger, IJwtPayload, IUser, ApiException, ERROR_CODES, query } from '@media-platform/shared';
 
 const logger = createLogger('AuthService');
 
@@ -34,6 +34,37 @@ export class AuthService {
     private jwtSecret: string,
     private jwtExpiration: number,
   ) {}
+
+  /**
+   * Create a new user in the database
+   */
+  async createUser(data: { email: string; username: string; passwordHash: string; firstName?: string; lastName?: string; }) {
+    const { email, username, passwordHash, firstName = '', lastName = '' } = data;
+    const res = await query(
+      `INSERT INTO users (email, username, password_hash, display_name, created_at) VALUES ($1, $2, $3, $4, now()) RETURNING id, email, username, display_name, created_at`,
+      [email, username, passwordHash, `${firstName} ${lastName}`],
+    );
+    const row = res.rows[0];
+    const user: IUser = {
+      id: String(row.id),
+      email: row.email,
+      username: row.username,
+      firstName: firstName,
+      lastName: lastName,
+      subscriptionStatus: 'free',
+      isCreator: false,
+      darkMode: true,
+      createdAt: row.created_at,
+      updatedAt: row.created_at,
+    };
+    return user;
+  }
+
+  async findUserByEmail(email: string): Promise<{ id: string; email: string; username: string; password_hash?: string } | null> {
+    const res = await query('SELECT id, email, username, password_hash FROM users WHERE email = $1 LIMIT 1', [email]);
+    if (res.rows.length === 0) return null;
+    return res.rows[0];
+  }
 
   /**
    * Generate JWT token

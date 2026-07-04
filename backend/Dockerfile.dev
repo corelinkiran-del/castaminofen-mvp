@@ -1,0 +1,33 @@
+FROM node:20-alpine AS base
+WORKDIR /app
+RUN apk add --no-cache git python3 make g++
+
+FROM base AS auth-service
+WORKDIR /app/packages/auth-service
+COPY packages/auth-service/package*.json ./
+RUN npm install
+COPY packages/auth-service/src ./src
+
+FROM base AS user-service
+WORKDIR /app/packages/user-service
+COPY packages/user-service/package*.json ./
+RUN npm install
+COPY packages/user-service/src ./src
+
+FROM base AS content-service
+WORKDIR /app/packages/content-service
+COPY packages/content-service/package*.json ./
+RUN npm install
+COPY packages/content-service/src ./src
+
+FROM base AS media-service
+WORKDIR /app/packages/media-service
+COPY packages/media-service/package*.json ./
+RUN npm install
+COPY packages/media-service/src ./src
+
+FROM base AS payment-service
+WORKDIR /app/packages/payment-service
+COPY packages/payment-service/package*.json ./
+RUN npm install
+COPY packages/payment-service/src ./src

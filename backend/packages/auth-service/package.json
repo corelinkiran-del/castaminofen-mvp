@@ -12,7 +12,7 @@
     "format": "prettier --write \"src/**/*.ts\""
   },
   "dependencies": {
-    "@media-platform/shared": "*",
+    "@media-platform/shared": "file:../shared",
     "express": "^4.18.0",
     "redis": "^4.6.0"
   },
