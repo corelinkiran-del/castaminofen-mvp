@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<title>نقشه ذهنی ویژگی‌های پلتفرم ترکیبی</title>
+<style>
+  :root{
+    --bg:#faf9f6;
+    --ink:#241f1a;
+    --ink-soft:#6b6459;
+    --line:#d8d2c6;
+    --p1:#2f6b52;   --p1-bg:#e7f1ec;
+    --p2:#a5631f;   --p2-bg:#f5ead9;
+    --p3:#5a5f7a;   --p3-bg:#eaeaf1;
+    --root:#241f1a;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:"Vazirmatn","Tahoma","Segoe UI",sans-serif;
+    padding:48px 24px 80px;
+  }
+  h1{
+    text-align:center; font-size:22px; font-weight:700; margin:0 0 4px;
+    letter-spacing:-0.2px;
+  }
+  .subtitle{
+    text-align:center; color:var(--ink-soft); font-size:14px; margin:0 0 40px;
+  }
+  .map{ max-width:1180px; margin:0 auto; position:relative; }
+
+  .root{
+    display:flex; justify-content:center; margin-bottom:6px;
+  }
+  .root-box{
+    background:var(--root); color:#faf9f6; padding:14px 32px; border-radius:14px;
+    font-size:16px; font-weight:700; text-align:center; max-width:360px;
+  }
+  .root-box span{ display:block; font-weight:400; font-size:12px; opacity:.75; margin-top:4px; }
+
+  .trunk{ width:2px; height:26px; background:var(--line); margin:0 auto; }
+
+  .phases{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:28px; align-items:start;
+    position:relative;
+  }
+  .phase-connector{
+    height:2px; background:var(--line); position:relative; top:0; margin-bottom:0;
+  }
+
+  .phase{
+    border-radius:16px; padding:18px 16px 20px; position:relative;
+  }
+  .phase-1{ background:var(--p1-bg); border:1.5px solid var(--p1); }
+  .phase-2{ background:var(--p2-bg); border:1.5px solid var(--p2); }
+  .phase-3{ background:var(--p3-bg); border:1.5px solid var(--p3); }
+
+  .phase-head{
+    display:flex; align-items:center; gap:8px; margin-bottom:14px;
+  }
+  .phase-dot{ width:10px; height:10px; border-radius:50%; flex:none; }
+  .phase-1 .phase-dot{ background:var(--p1); }
+  .phase-2 .phase-dot{ background:var(--p2); }
+  .phase-3 .phase-dot{ background:var(--p3); }
+
+  .phase-title{ font-size:15px; font-weight:700; }
+  .phase-1 .phase-title{ color:var(--p1); }
+  .phase-2 .phase-title{ color:var(--p2); }
+  .phase-3 .phase-title{ color:var(--p3); }
+
+  .phase-sub{ font-size:11.5px; color:var(--ink-soft); margin-bottom:14px; line-height:1.6; }
+
+  .category{ margin-bottom:12px; }
+  .category:last-child{ margin-bottom:0; }
+  .category-title{
+    font-size:12.5px; font-weight:700; margin-bottom:6px;
+    padding-bottom:4px; border-bottom:1px dashed var(--line);
+  }
+  .feature-list{ margin:0; padding-inline-start:16px; }
+  .feature-list li{
+    font-size:12px; line-height:1.85; color:var(--ink);
+  }
+
+  .legend{
+    max-width:1180px; margin:36px auto 0; display:flex; justify-content:center;
+    gap:22px; flex-wrap:wrap; font-size:12px; color:var(--ink-soft);
+  }
+  .legend-item{ display:flex; align-items:center; gap:6px; }
+  .legend-dot{ width:9px; height:9px; border-radius:50%; }
+
+  @media (max-width:860px){
+    .phases{ grid-template-columns:1fr; }
+  }
+</style>
+</head>
+<body>
+
+  <h1>نقشه ذهنی ویژگی‌های پلتفرم ترکیبی صوتی-تصویری</h1>
+  <div class="subtitle">ترکیب Podurama · Pocket Casts · Poddy · Castbox · YouTube · Spotify · Fidibo · نوار · طاقچه · آپارات</div>
+
+  <div class="map">
+    <div class="root">
+      <div class="root-box">
+        پلتفرم صوتی-تصویری فارسی
+        <span>پادکست + کتاب صوتی + ویدیو در یک اپ</span>
+      </div>
+    </div>
+    <div class="trunk"></div>
+
+    <div class="phases">
+
+      <!-- Phase 1 -->
+      <div class="phase phase-1">
+        <div class="phase-head">
+          <div class="phase-dot"></div>
+          <div class="phase-title">فاز ۱ — MVP</div>
+        </div>
+        <div class="phase-sub">حداقل ویژگی‌هایی که ارزش اصلی محصول را می‌سازند و بدون آن‌ها عرضه بی‌معناست.</div>
+
+        <div class="category">
+          <div class="category-title">مصرف چندرسانه‌ای</div>
+          <ul class="feature-list">
+            <li>پلیر واحد صوت + ویدیو</li>
+            <li>کتاب صوتی (استریم و دانلود)</li>
+          </ul>
+        </div>
+
+        <div class="category">
+          <div class="category-title">زیرساخت بومی</div>
+          <ul class="feature-list">
+            <li>پخش و دانلود آفلاین قوی</li>
+          </ul>
+        </div>
+
+        <div class="category">
+          <div class="category-title">سازمان‌دهی شخصی</div>
+          <ul class="feature-list">
+            <li>سینک موبایل / وب / دسکتاپ</li>
+            <li>پلی‌لیست شخصی و دنبال‌کردن</li>
+            <li>سرعت پخش، تایمر خواب، ادامه خودکار</li>
+          </ul>
+        </div>
+
+        <div class="category">
+          <div class="category-title">کشف محتوا</div>
+          <ul class="feature-list">
+            <li>جستجوی پایه عنوان / سازنده</li>
+          </ul>
+        </div>
+
+        <div class="category">
+          <div class="category-title">مدل درآمدی و سازنده</div>
+          <ul class="feature-list">
+            <li>اشتراک ماهانه + خرید تکی (ریالی)</li>
+            <li>آپلود و مدیریت پایه محتوا</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Phase 2 -->
+      <div class="phase phase-2">
+        <div class="phase-head">
+          <div class="phase-dot"></div>
+          <div class="phase-title">فاز ۲ — رشد</div>
+        </div>
+        <div class="phase-sub">بعد از اثبات تناسب محصول با بازار، برای بالا بردن ماندگاری و تمایز اضافه می‌شود.</div>
+
+        <div class="category">
+          <div class="category-title">کشف هوشمند</div>
+          <ul class="feature-list">
+            <li>جستجوی متنی داخل صدا (ASR)</li>
+            <li>خلاصه‌سازی خودکار با AI</li>
+            <li>پیشنهاد شخصی‌سازی‌شده</li>
+          </ul>
+        </div>
+
+        <div class="category">
+          <div class="category-title">سازمان‌دهی شخصی</div>
+          <ul class="feature-list">
+            <li>پلی‌لیست مشترک / گروهی</li>
+            <li>بوکمارک و یادداشت‌گذاری</li>
+          </ul>
+        </div>
+
+        <div class="category">
+          <div class="category-title">لایه اجتماعی</div>
+          <ul class="feature-list">
+            <li>کامنت/لایک روی تایم‌استمپ</li>
+            <li>کلیپ کوتاه برای اشتراک‌گذاری</li>
+          </ul>
+        </div>
+
+        <div class="category">
+          <div class="category-title">ابزار سازنده و محتوا</div>
+          <ul class="feature-list">
+            <li>آنالیتیکس رفتار شنونده</li>
+            <li>هم‌ترازی متن و صدا برای کتاب</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Phase 3 -->
+      <div class="phase phase-3">
+        <div class="phase-head">
+          <div class="phase-dot"></div>
+          <div class="phase-title">فاز ۳ — تمایز بلندمدت</div>
+        </div>
+        <div class="phase-sub">وابسته به مقیاس و داده کافی؛ زودتر از این فاز، بازگشت سرمایه پایینی دارند.</div>
+
+        <div class="category">
+          <div class="category-title">کشف هوشمند</div>
+          <ul class="feature-list">
+            <li>چت‌بات هوشمند جستجو/پیشنهاد</li>
+          </ul>
+        </div>
+
+        <div class="category">
+          <div class="category-title">ابزار سازنده</div>
+          <ul class="feature-list">
+            <li>استودیوی ضبط و ویرایش داخلی</li>
+            <li>حالت چندشو برای شبکه‌های بزرگ</li>
+          </ul>
+        </div>
+
+        <div class="category">
+          <div class="category-title">زیرساخت بومی</div>
+          <ul class="feature-list">
+            <li>زیرنویس و رونوشت خودکار فارسی</li>
+          </ul>
+        </div>
+
+        <div class="category">
+          <div class="category-title">مدل درآمدی</div>
+          <ul class="feature-list">
+            <li>تبلیغات صوتی پویا برای سازنده</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><span class="legend-dot" style="background:var(--p1);"></span> فاز ۱ — باید داشته باشد</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--p2);"></span> فاز ۲ — باید اضافه شود</div>
+    <div class="legend-item"><span class="legend-dot" style="background:var(--p3);"></span> فاز ۳ — خوب است داشته باشد</div>
+  </div>
+
+</body>
+</html>

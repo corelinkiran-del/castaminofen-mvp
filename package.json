@@ -1,0 +1,35 @@
+{
+  "name": "absence-tracker2",
+  "version": "1.0.0",
+  "description": "A production-ready audio-video multimedia platform for Persian market",
+  "private": true,
+  "workspaces": [
+    "backend/packages/*",
+    "frontend-mobile",
+    "frontend-web"
+  ],
+  "scripts": {
+    "dev": "yarn workspaces foreach -pt run dev",
+    "build": "yarn workspaces foreach -pt run build",
+    "test": "yarn workspaces foreach -pt run test",
+    "lint": "yarn workspaces foreach -pt run lint",
+    "format": "yarn workspaces foreach -pt run format",
+    "type-check": "yarn workspaces foreach -pt run type-check",
+    "migrate": "yarn workspace @media-platform/content-service run migrate",
+    "setup": "bash ./scripts/setup-dev.sh",
+    "start-services": "docker-compose up -d",
+    "stop-services": "docker-compose down",
+    "logs": "docker-compose logs -f"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "prettier": "^3.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "yarn": ">=4.0.0"
+  }
+}
