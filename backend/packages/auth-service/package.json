@@ -1,0 +1,25 @@
+{
+  "name": "@media-platform/auth-service",
+  "version": "1.0.0",
+  "description": "Authentication service for Media Platform",
+  "main": "dist/main.js",
+  "scripts": {
+    "dev": "ts-node src/main.ts",
+    "build": "tsc",
+    "start": "node dist/main.js",
+    "test": "jest",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write \"src/**/*.ts\""
+  },
+  "dependencies": {
+    "@media-platform/shared": "*",
+    "express": "^4.18.0",
+    "redis": "^4.6.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.0",
+    "@types/node": "^20.0.0",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
+  }
+}
