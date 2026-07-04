@@ -26,20 +26,38 @@ export default function Login() {
   }
 
   return (
-    <div style={{ maxWidth: 480, margin: '40px auto', padding: 20 }}>
-      <h2>ورود</h2>
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: 12 }}>
-          <label>ایمیل</label>
-          <input value={email} onChange={(e) => setEmail(e.target.value)} style={{ width: '100%' }} />
+    <main className="auth-page">
+      <section className="auth-card">
+        <div className="auth-brand">
+          <div className="brand-mark">C</div>
+          <div>
+            <h1 className="brand-title">Castaminofen</h1>
+            <p className="brand-tagline">پلتفرم مدیا برای تجربه‌های صوتی و تصویری حرفه‌ای</p>
+          </div>
         </div>
-        <div style={{ marginBottom: 12 }}>
-          <label>رمز عبور</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} style={{ width: '100%' }} />
+
+        <h2 className="auth-headline">به دنیای استریم حرفه‌ای خوش آمدید</h2>
+        <p className="auth-subtitle">با ورود به حساب کاربری، پلی‌لیست‌های هوشمند، محتوای اختصاصی و تجربه شخصی‌سازی‌شده را فعال کنید.</p>
+
+        <form onSubmit={handleSubmit}>
+          <div className="auth-field">
+            <label>ایمیل</label>
+            <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" required placeholder="name@example.com" />
+          </div>
+
+          <div className="auth-field">
+            <label>رمز عبور</label>
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required placeholder="رمز عبور خود را وارد کنید" />
+          </div>
+
+          <button className="auth-action" type="submit">ورود به حساب</button>
+          {error && <div className="auth-note">{error}</div>}
+        </form>
+
+        <div className="auth-footer">
+          هنوز حساب ندارید؟ <a href="/auth/register">ثبت نام کنید</a>
         </div>
-        <button type="submit">ورود</button>
-        {error && <div style={{ color: 'red', marginTop: 8 }}>{error}</div>}
-      </form>
-    </div>
+      </section>
+    </main>
   );
 }

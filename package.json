@@ -9,12 +9,12 @@
     "frontend-web"
   ],
   "scripts": {
-    "dev": "yarn workspaces foreach -pt run dev",
-    "build": "yarn workspaces foreach -pt run build",
-    "test": "yarn workspaces foreach -pt run test",
-    "lint": "yarn workspaces foreach -pt run lint",
-    "format": "yarn workspaces foreach -pt run format",
-    "type-check": "yarn workspaces foreach -pt run type-check",
+    "dev": "yarn workspaces foreach -A -pt run dev",
+    "build": "yarn workspaces foreach -A -pt run build",
+    "test": "yarn workspaces foreach -A -pt run test",
+    "lint": "yarn workspaces foreach -A -pt run lint",
+    "format": "yarn workspaces foreach -A -pt run format",
+    "type-check": "yarn workspaces foreach -A -pt run type-check",
     "migrate": "yarn workspace @media-platform/content-service run migrate",
     "setup": "bash ./scripts/setup-dev.sh",
     "start-services": "docker-compose up -d",

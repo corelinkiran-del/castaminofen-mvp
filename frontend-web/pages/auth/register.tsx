@@ -26,24 +26,43 @@ export default function Register() {
   }
 
   return (
-    <div style={{ maxWidth: 480, margin: '40px auto', padding: 20 }}>
-      <h2>ثبت نام</h2>
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: 12 }}>
-          <label>ایمیل</label>
-          <input value={email} onChange={(e) => setEmail(e.target.value)} style={{ width: '100%' }} />
+    <main className="auth-page">
+      <section className="auth-card">
+        <div className="auth-brand">
+          <div className="brand-mark">C</div>
+          <div>
+            <h1 className="brand-title">Castaminofen</h1>
+            <p className="brand-tagline">ثبت نام کنید و به محتوای ویژه و تجربهٔ پریمیوم دسترسی پیدا کنید.</p>
+          </div>
         </div>
-        <div style={{ marginBottom: 12 }}>
-          <label>نام کاربری</label>
-          <input value={username} onChange={(e) => setUsername(e.target.value)} style={{ width: '100%' }} />
+
+        <h2 className="auth-headline">حساب کاربری خود را بسازید</h2>
+        <p className="auth-subtitle">با یک نام کاربری حرفه‌ای شروع کنید و به سرعت به دنیای رسانه‌های شخصی‌سازی‌شده وارد شوید.</p>
+
+        <form onSubmit={handleSubmit}>
+          <div className="auth-field">
+            <label>ایمیل</label>
+            <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" required placeholder="name@example.com" />
+          </div>
+
+          <div className="auth-field">
+            <label>نام کاربری</label>
+            <input value={username} onChange={(e) => setUsername(e.target.value)} required placeholder="نام کاربری شما" />
+          </div>
+
+          <div className="auth-field">
+            <label>رمز عبور</label>
+            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required placeholder="رمز عبور قوی انتخاب کنید" />
+          </div>
+
+          <button className="auth-action" type="submit">ایجاد حساب جدید</button>
+          {error && <div className="auth-note">{error}</div>}
+        </form>
+
+        <div className="auth-footer">
+          حساب دارید؟ <a href="/auth/login">به صفحه ورود بروید</a>
         </div>
-        <div style={{ marginBottom: 12 }}>
-          <label>رمز عبور</label>
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} style={{ width: '100%' }} />
-        </div>
-        <button type="submit">ثبت نام</button>
-        {error && <div style={{ color: 'red', marginTop: 8 }}>{error}</div>}
-      </form>
-    </div>
+      </section>
+    </main>
   );
 }
